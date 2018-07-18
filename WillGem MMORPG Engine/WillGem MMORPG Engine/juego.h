@@ -1,5 +1,6 @@
 #pragma once
 #include "SFML\Graphics.hpp"
+#include "jugador.h"
 
 using namespace sf;
 
@@ -12,8 +13,10 @@ public:
 	void procesar_logic(); //Procesa logicas del juego
 	void procesar_eventos(); //Procesa perifericos, teclado, mouse, etc
 	void procesar_networking();
+	void gameloop();
 
 private:
+	player * j1; //Jugador 1
 	Event * evento;
 	RenderWindow * ventana;
 	bool gameover = false;
