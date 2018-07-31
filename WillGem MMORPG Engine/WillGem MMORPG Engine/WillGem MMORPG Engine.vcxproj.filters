@@ -24,12 +24,18 @@
     <ClCompile Include="jugador.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+    <ClCompile Include="sprite_a.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="juego.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="jugador.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="sprite_a.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

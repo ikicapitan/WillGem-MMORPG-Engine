@@ -1,8 +1,10 @@
 #include "jugador.h"
 
-player::player()
+using namespace std;
+
+player::player(int spr_clase, int cant_x1, int cant_y1, Vector2i fr_a)
 {
-	txt_player = new Texture();
-	txt_player->loadFromFile("Sprites/IKI2.png");
-	spr_player = new Sprite(*txt_player);
+	spr_player = new sprite_a();
+	spr_player->set_sprite(spr_clase, cant_x1, cant_y1, fr_a);
 }
+

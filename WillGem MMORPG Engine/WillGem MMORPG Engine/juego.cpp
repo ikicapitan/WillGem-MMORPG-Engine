@@ -10,7 +10,7 @@ juego::juego(Vector2u resolucion)
 
 void juego::iniciar()
 {
-	j1 = new player();
+	j1 = new player(2,4,4,Vector2i(3,2));
 	evento = new Event();
 }
 
@@ -31,6 +31,10 @@ void juego::procesar_eventos()
 {
 	switch (evento->type)
 	{
+		case Event::Closed:
+			exit(1);
+			break;
+
 		case Event::KeyPressed: //Procesamiento del teclado
 			if (Keyboard::isKeyPressed(Keyboard::Left))
 			{
