@@ -10,6 +10,7 @@ public:
 	void set_sprite(int spr_clase, int cant_x1, int cant_y1, Vector2i fr_a);
 	void seleccionar_frame(); //Carga el frame actual (por si fue cambiado)
 	void set_frame(int frame); //Modifica el frame actual a otro
+	void animar_frame(); //Animacion
 	Sprite * spr_player; //Creo un Sprite para el Player
 	Texture * txt_player; //Textura para Sprite del Player
 	int spr_actual;

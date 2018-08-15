@@ -20,4 +20,7 @@ private:
 	Event * evento;
 	RenderWindow * ventana;
 	bool gameover = false;
+	int fps;
+	Clock * reloj1;
+	Time * cronometro1;
 };

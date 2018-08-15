@@ -26,3 +26,18 @@ void sprite_a::seleccionar_frame()
 	IntRect rectangulo(frame_n.x * frame_size.x, frame_n.y * frame_size.y, frame_size.x, frame_size.y);
 	spr_player->setTextureRect(rectangulo);
 }
+
+void sprite_a::animar_frame()
+{
+	if (frame_n.x != cant_x - 1) //Si aun no alcancé el ultimo frame
+	{
+		frame_n.x += 1; //Incremento un frame
+	}
+	else
+	{
+		frame_n.x = 0; //Reseteo a frame 0 (vuelve al principio)
+	}
+	
+	seleccionar_frame(); //Selecciono el rectangulo correspondiente al frame
+}
+
