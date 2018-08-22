@@ -27,12 +27,15 @@ void juego::gameloop()
 			while (ventana->pollEvent(*evento))
 			{
 				procesar_eventos();
+				procesar_logic();
 			}
 
 			if (j1->caminando)
 			{
 				j1->animar_frame();
 			}
+			
+			
 			renderizar();
 			reloj1->restart(); //Reinicio el reloj
 		}
@@ -50,142 +53,45 @@ void juego::procesar_eventos()
 
 		//																		PRESIONAR TECLA
 		//
-		//
-		//
-
-
 		case Event::KeyPressed: //Procesamiento del teclado
 			if (Keyboard::isKeyPressed(Keyboard::Left))
 			{
-				if (Keyboard::isKeyPressed(Keyboard::Up))
-				{
-					
-				}
-				else if (Keyboard::isKeyPressed(Keyboard::Down))
-				{
-
-				}
-				else
-				{
-
-				}
+				teclas_j1[0] = true; //Habilito tecla izquierda
 			}
 			else if (Keyboard::isKeyPressed(Keyboard::Right))
 			{
-				if (Keyboard::isKeyPressed(Keyboard::Up))
-				{
-
-				}
-				else if (Keyboard::isKeyPressed(Keyboard::Down))
-				{
-
-				}
-				else
-				{
-
-				}
+				teclas_j1[1] = true;
 			}
 			else if (Keyboard::isKeyPressed(Keyboard::Up))
 			{
-				if (Keyboard::isKeyPressed(Keyboard::Left))
-				{
-
-				}
-				else if (Keyboard::isKeyPressed(Keyboard::Right))
-				{
-
-				}
-				else
-				{
-					j1->caminando = true;
-					//j1->set_pos(Vector2f(j1->get_pos().x, j1->get_pos().y - 20));
-				}
+				teclas_j1[2] = true;
 			}
 			else if (Keyboard::isKeyPressed(Keyboard::Down))
 			{
-				if (Keyboard::isKeyPressed(Keyboard::Left))
-				{
-
-				}
-				else if (Keyboard::isKeyPressed(Keyboard::Right))
-				{
-
-				}
-				else
-				{
-
-				}
+				teclas_j1[3] = true;
 			}
 		break;
 
 		//																SOLTAR TECLA
-		//
-		//
-		//
 		//
 
 		case Event::KeyReleased: //Procesamiento de soltar tecla
 
 			if (evento->key.code == Keyboard::Left)
 			{
-				if (evento->key.code == Keyboard::Up)
-				{
-
-				}
-				else if (evento->key.code == Keyboard::Down)
-				{
-
-				}
-				else
-				{
-
-				}
+				teclas_j1[0] = false; //Desactivo tecla izq
 			}
 			else if (evento->key.code == Keyboard::Right)
 			{
-				if (evento->key.code == Keyboard::Up)
-				{
-
-				}
-				else if (evento->key.code == Keyboard::Down)
-				{
-
-				}
-				else
-				{
-
-				}
+				teclas_j1[1] = false;
 			}
 			else if (evento->key.code == Keyboard::Up)
 			{
-				if (evento->key.code == Keyboard::Left)
-				{
-
-				}
-				else if (evento->key.code == Keyboard::Right)
-				{
-
-				}
-				else
-				{
-					j1->caminando = false;
-					//j1->set_pos(Vector2f(j1->get_pos().x, j1->get_pos().y - 20));
-				}
+				teclas_j1[2] = false;
 			}
 			else if (evento->key.code == Keyboard::Down)
 			{
-				if (evento->key.code == Keyboard::Left)
-				{
-
-				}
-				else if (evento->key.code == Keyboard::Right)
-				{
-
-				}
-				else
-				{
-
-				}
+				teclas_j1[3] = false;
 			}
 			break;
 	}
@@ -193,7 +99,57 @@ void juego::procesar_eventos()
 
 void juego::procesar_logic()
 {
+	j1->caminando = false; //El jugador 1 no esta caminando
 
+	//Chequear teclas
+
+	if (teclas_j1[0])
+	{
+		j1->caminando = true; //El jugador 1 esta caminando
+		if (teclas_j1[2])
+		{
+			j1->direccion = izq_arr;
+		}
+		else if (teclas_j1[3])
+		{
+			j1->direccion = izq_ab;
+		}
+		else
+		{
+			j1->direccion = izquierda;
+		}
+	}
+	else if (teclas_j1[1])
+	{
+		j1->caminando = true;
+		if (teclas_j1[2])
+		{
+			j1->direccion = der_arr;
+		}
+		else if (teclas_j1[3])
+		{
+			j1->direccion = der_ab;
+		}
+		else
+		{
+			j1->direccion = derecha;
+		}
+	}
+	else if (teclas_j1[2])
+	{
+		j1->caminando = true;
+		j1->direccion = arriba;
+	}
+	else if (teclas_j1[3])
+	{
+		j1->caminando = true;
+		j1->direccion = abajo;
+	}
+
+
+	//Update de actores
+
+	j1->update(); //Actualiza fisicas j1
 }
 
 void juego::renderizar()

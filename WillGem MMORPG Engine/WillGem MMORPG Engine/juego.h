@@ -20,6 +20,7 @@ private:
 	Event * evento;
 	RenderWindow * ventana;
 	bool gameover = false;
+	bool teclas_j1[4]; //Izquierda, derecha, arriba y abajo
 	int fps;
 	Clock * reloj1;
 	Time * cronometro1;

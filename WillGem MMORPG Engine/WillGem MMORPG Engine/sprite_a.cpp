@@ -41,3 +41,14 @@ void sprite_a::animar_frame()
 	seleccionar_frame(); //Selecciono el rectangulo correspondiente al frame
 }
 
+void sprite_a::set_frame_x(int frame)
+{
+	frame_n.x = frame;
+	seleccionar_frame();
+}
+
+void sprite_a::set_frame_y(int frame)
+{
+	frame_n.y = frame;
+	seleccionar_frame();
+}
