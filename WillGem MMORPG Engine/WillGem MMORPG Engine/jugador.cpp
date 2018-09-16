@@ -3,11 +3,12 @@
 
 using namespace std;
 
-player::player(int spr_clase, int cant_x1, int cant_y1, Vector2i fr_a)
+player::player(RenderWindow &ventana, int spr_clase, int cant_x1, int cant_y1, Vector2i fr_a)
 {
 	set_sprite(spr_clase, cant_x1, cant_y1, fr_a);
-	vel_walk = 3.0f;
+	vel_walk = 0.3f;
 	vel_run = 64;
+	window = &ventana;
 }
 
 void player::update() //Actualiza fisicas del player
@@ -64,5 +65,67 @@ void player::seleccionar_velocidad()
 		set_frame_y(0);
 		break;
 	}
+}
+
+void player::procesar_eventos()
+{
+
+	while (window->pollEvent(*keyboard->evento))
+	{
+		keyboard->procesar_eventos();
+	}
+
+
+	caminando = false; //El jugador 1 no esta caminando
+
+	//Chequear teclas
+
+	if (keyboard->teclas_j1[0])
+	{
+		caminando = true; //El jugador 1 esta caminando
+		if (keyboard->teclas_j1[2])
+		{
+			direccion = izq_arr;
+		}
+		else if (keyboard->teclas_j1[3])
+		{
+			direccion = izq_ab;
+		}
+		else
+		{
+			direccion = izquierda;
+		}
+	}
+	else if (keyboard->teclas_j1[1])
+	{
+		caminando = true;
+		if (keyboard->teclas_j1[2])
+		{
+			direccion = der_arr;
+		}
+		else if (keyboard->teclas_j1[3])
+		{
+			direccion = der_ab;
+		}
+		else
+		{
+			direccion = derecha;
+		}
+	}
+	else if (keyboard->teclas_j1[2])
+	{
+		caminando = true;
+		direccion = arriba;
+	}
+	else if (keyboard->teclas_j1[3])
+	{
+		caminando = true;
+		direccion = abajo;
+	}
+
+
+	//Update de actores
+
+	update(); //Actualiza fisicas j1
 }
 

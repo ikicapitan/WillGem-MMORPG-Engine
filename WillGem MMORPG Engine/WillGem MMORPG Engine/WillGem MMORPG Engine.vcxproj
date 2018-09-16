@@ -125,11 +125,13 @@
     <ClCompile Include="jugador.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="sprite_a.cpp" />
+    <ClCompile Include="teclado.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="juego.h" />
     <ClInclude Include="jugador.h" />
     <ClInclude Include="sprite_a.h" />
+    <ClInclude Include="teclado.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

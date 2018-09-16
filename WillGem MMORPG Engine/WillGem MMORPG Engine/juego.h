@@ -11,16 +11,14 @@ public:
 	void iniciar(); //Inicializacion de variables y diferentes aspectos importantes
 	void renderizar(); //Dibujando en pantalla de los elementos del juego
 	void procesar_logic(); //Procesa logicas del juego
-	void procesar_eventos(); //Procesa perifericos, teclado, mouse, etc
 	void procesar_networking();
 	void gameloop();
 
 private:
 	player * j1; //Jugador 1
-	Event * evento;
 	RenderWindow * ventana;
 	bool gameover = false;
-	bool teclas_j1[4]; //Izquierda, derecha, arriba y abajo
+	
 	int fps;
 	Clock * reloj1;
 	Time * cronometro1;
