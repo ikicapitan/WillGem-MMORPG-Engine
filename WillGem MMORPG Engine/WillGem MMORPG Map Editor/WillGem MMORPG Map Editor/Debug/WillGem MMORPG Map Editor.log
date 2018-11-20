@@ -1,11 +1,13 @@
 ﻿  mapa.cpp
-c:\users\ikicapitan\desktop\iki\will gem\willgem mmorpg engine\willgem mmorpg engine\willgem mmorpg map editor\willgem mmorpg map editor\mapa.h(2): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
+c:\users\ikicapitan\desktop\iki\will gem\willgem mmorpg engine\willgem mmorpg engine\willgem mmorpg map editor\willgem mmorpg map editor\mapa.cpp(28): warning C4244: 'argumento': conversión de 'unsigned int' a 'float'; posible pérdida de datos
+c:\users\ikicapitan\desktop\iki\will gem\willgem mmorpg engine\willgem mmorpg engine\willgem mmorpg map editor\willgem mmorpg map editor\mapa.cpp(32): warning C4018: '<=': no coinciden signed/unsigned
+c:\users\ikicapitan\desktop\iki\will gem\willgem mmorpg engine\willgem mmorpg engine\willgem mmorpg map editor\willgem mmorpg map editor\mapa.cpp(34): warning C4244: 'argumento': conversión de 'unsigned int' a 'float'; posible pérdida de datos
+c:\users\ikicapitan\desktop\iki\will gem\willgem mmorpg engine\willgem mmorpg engine\willgem mmorpg map editor\willgem mmorpg map editor\mapa.cpp(41): warning C4018: '<=': no coinciden signed/unsigned
+c:\users\ikicapitan\desktop\iki\will gem\willgem mmorpg engine\willgem mmorpg engine\willgem mmorpg map editor\willgem mmorpg map editor\mapa.cpp(43): warning C4244: 'argumento': conversión de 'unsigned int' a 'float'; posible pérdida de datos
+c:\users\ikicapitan\desktop\iki\will gem\willgem mmorpg engine\willgem mmorpg engine\willgem mmorpg map editor\willgem mmorpg map editor\mapa.cpp(52): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ikicapitan\desktop\iki\will gem\willgem mmorpg engine\willgem mmorpg engine\willgem mmorpg map editor\willgem mmorpg map editor\mapa.cpp(54): warning C4018: '<': no coinciden signed/unsigned
+c:\users\ikicapitan\desktop\iki\will gem\willgem mmorpg engine\willgem mmorpg engine\willgem mmorpg map editor\willgem mmorpg map editor\mapa.cpp(69): warning C4244: 'argumento': conversión de 'unsigned int' a 'float'; posible pérdida de datos
   editor.cpp
-c:\users\ikicapitan\desktop\iki\will gem\willgem mmorpg engine\willgem mmorpg engine\willgem mmorpg map editor\willgem mmorpg map editor\mapa.h(2): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
-  Generando código...
-  Compilando...
-  main.cpp
-c:\users\ikicapitan\desktop\iki\will gem\willgem mmorpg engine\willgem mmorpg engine\willgem mmorpg map editor\willgem mmorpg map editor\mapa.h(2): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
   Generando código...
   WillGem MMORPG Map Editor.vcxproj -> C:\Users\ikicapitan\Desktop\iki\Will Gem\WillGem MMORPG Engine\WillGem MMORPG Engine\WillGem MMORPG Map Editor\Debug\WillGem MMORPG Map Editor.exe
   WillGem MMORPG Map Editor.vcxproj -> C:\Users\ikicapitan\Desktop\iki\Will Gem\WillGem MMORPG Engine\WillGem MMORPG Engine\WillGem MMORPG Map Editor\Debug\WillGem MMORPG Map Editor.pdb (Partial PDB)

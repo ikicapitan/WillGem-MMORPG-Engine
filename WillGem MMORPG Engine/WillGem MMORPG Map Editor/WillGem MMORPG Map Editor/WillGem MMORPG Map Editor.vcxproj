@@ -120,11 +120,15 @@
     <ClCompile Include="eventos.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mapa.cpp" />
+    <ClCompile Include="sprite_a.cpp" />
+    <ClCompile Include="tile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="editor.h" />
     <ClInclude Include="eventos.h" />
     <ClInclude Include="mapa.h" />
+    <ClInclude Include="sprite_a.h" />
+    <ClInclude Include="tile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
