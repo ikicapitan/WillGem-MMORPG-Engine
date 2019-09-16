@@ -2,9 +2,10 @@
 #include <iostream>
 using namespace std;
 
-mapa::mapa(RenderWindow &window)
+mapa::mapa(RenderWindow &window, Vector2i n_map)
 {
 	ventana = &window;
+	n_mapa = n_map;
 	iniciar();
 }
 
@@ -68,6 +69,76 @@ void mapa::dibujar_tiles()
 			spr_tile->set_sprite(t.num_tileset, 16, 16, t.num_tile); //Cargo cada elemento leyendo la lista y asignando el valor al Sprite creado
 			spr_tile->spr_player->setPosition(t.num_grilla.x * dim_grillas.x, t.num_grilla.y * dim_grillas.y); //Posiciono en la grilla correspondiente para dibujar
 			ventana->draw(*spr_tile->spr_player);
+		}
+	}
+}
+
+
+void mapa::load_mapa()
+{
+	string nombre_archivo;
+	nombre_archivo = "Resources/Mapas/" + to_string(n_mapa.x) + "-" + to_string(n_mapa.y) + ".dat";
+
+	ifstream map(nombre_archivo.c_str(), ios::binary); //Abrimos archivo para escritura en cifrado binario
+
+	if (map.fail()) //Si fallo al abrir
+		reset_map();
+	else
+	{
+		for (int i = 0; i < capas; i++)
+		{
+			for each(tile t in tilemap[i]) //Recorro elementos de la lista uno por uno
+			{
+				map.read(reinterpret_cast<char*>(&t.num_grilla), sizeof(unsigned short)); //Escribimos datos en orden
+				map.read(reinterpret_cast<char*>(&t.num_tile), sizeof(unsigned short));
+				map.read(reinterpret_cast<char*>(&t.num_tileset), sizeof(unsigned short));
+			}
+		}
+	}
+}
+
+
+void mapa::reset_map()
+{
+	for (int i = 0; i < capas; i++)
+	{
+		tilemap[i].clear(); //Vaciamos elementos de la lista de tiles en cada capa
+	}
+}
+
+void mapa::save_mapa()
+{
+	string nombre_archivo;
+	nombre_archivo = "Resources/Mapas/" + to_string(n_mapa.x) + "-" + to_string(n_mapa.y) + ".dat";
+
+	ofstream map(nombre_archivo.c_str(), ios::binary); //Abrimos archivo para escritura en cifrado binario
+
+	for (int i = 0; i < capas; i++) //Recorremos las capas
+	{
+		for each(tile t in tilemap[i]) //Recorremos la lista de tiles en esas capas
+		{
+			map.write(reinterpret_cast<const char*>(&t.num_grilla), sizeof(unsigned short)); //Escribimos datos en orden
+			map.write(reinterpret_cast<const char*>(&t.num_tile), sizeof(unsigned short));
+			map.write(reinterpret_cast<const char*>(&t.num_tileset), sizeof(unsigned short));
+		}
+	}
+
+	map.close();
+}
+
+void mapa::set_data(Vector2i num_grilla, Vector2i num_tile, unsigned short num_tileset)
+{
+	tile t = tile(num_grilla, num_tile, num_tileset);
+	tilemap->push_back(t);
+}
+
+void mapa::remove_data(Vector2i num_grilla)
+{
+	for each (tile t in *tilemap)
+	{
+		if (t.num_grilla == num_grilla)
+		{
+			tilemap->remove(t); //Esta linea parece ser el error ¿?
 		}
 	}
 }

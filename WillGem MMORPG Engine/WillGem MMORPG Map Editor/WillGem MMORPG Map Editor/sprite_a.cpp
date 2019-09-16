@@ -21,6 +21,14 @@ void sprite_a::set_sprite(int spr_clase, int cant_x1, int cant_y1, Vector2i fr_a
 	seleccionar_frame();
 }
 
+void sprite_a::set_sprite(String path)
+{
+	txt_player = new Texture();
+	txt_player->loadFromFile(path);
+	spr_player = new Sprite(*txt_player);
+
+}
+
 void sprite_a::seleccionar_frame()
 {
 	IntRect rectangulo(frame_n.x * frame_size.x, frame_n.y * frame_size.y, frame_size.x, frame_size.y);
