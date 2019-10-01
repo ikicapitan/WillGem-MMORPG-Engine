@@ -1,4 +1,47 @@
-﻿  mapa.cpp
+﻿  editor.cpp
+  eventos.cpp
+E:\iki\Will Gem\WillGem MMORPG Engine\WillGem MMORPG Engine\WillGem MMORPG Map Editor\WillGem MMORPG Map Editor\eventos.cpp(40): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+          and
+          [
+              T=int
+          ]
+E:\iki\Will Gem\WillGem MMORPG Engine\WillGem MMORPG Engine\WillGem MMORPG Map Editor\WillGem MMORPG Map Editor\eventos.cpp(44): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+          and
+          [
+              T=int
+          ]
+E:\iki\Will Gem\WillGem MMORPG Engine\WillGem MMORPG Engine\WillGem MMORPG Map Editor\WillGem MMORPG Map Editor\eventos.cpp(57): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+          and
+          [
+              T=int
+          ]
+E:\iki\Will Gem\WillGem MMORPG Engine\WillGem MMORPG Engine\WillGem MMORPG Map Editor\WillGem MMORPG Map Editor\eventos.cpp(77): warning C4018: '<': signed/unsigned mismatch
+E:\iki\Will Gem\WillGem MMORPG Engine\WillGem MMORPG Engine\WillGem MMORPG Map Editor\WillGem MMORPG Map Editor\eventos.cpp(77): warning C4018: '>': signed/unsigned mismatch
+E:\iki\Will Gem\WillGem MMORPG Engine\WillGem MMORPG Engine\WillGem MMORPG Map Editor\WillGem MMORPG Map Editor\eventos.cpp(86): warning C4018: '<': signed/unsigned mismatch
+E:\iki\Will Gem\WillGem MMORPG Engine\WillGem MMORPG Engine\WillGem MMORPG Map Editor\WillGem MMORPG Map Editor\eventos.cpp(86): warning C4018: '>': signed/unsigned mismatch
+E:\iki\Will Gem\WillGem MMORPG Engine\WillGem MMORPG Engine\WillGem MMORPG Map Editor\WillGem MMORPG Map Editor\eventos.cpp(132): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+  main.cpp
+  mapa.cpp
 E:\iki\Will Gem\WillGem MMORPG Engine\WillGem MMORPG Engine\WillGem MMORPG Map Editor\WillGem MMORPG Map Editor\mapa.cpp(29): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
@@ -27,4 +70,5 @@ E:\iki\Will Gem\WillGem MMORPG Engine\WillGem MMORPG Engine\WillGem MMORPG Map E
           [
               T=unsigned int
           ]
+  Generating Code...
   WillGem MMORPG Map Editor.vcxproj -> E:\iki\Will Gem\WillGem MMORPG Engine\WillGem MMORPG Engine\WillGem MMORPG Map Editor\Debug\WillGem MMORPG Map Editor.exe

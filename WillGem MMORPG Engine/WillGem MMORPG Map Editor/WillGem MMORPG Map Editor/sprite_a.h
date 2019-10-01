@@ -1,5 +1,7 @@
 #pragma once
 #include "SFML\Graphics.hpp"
+#include "tempresources.h"
+#include <vector>
 
 using namespace sf;
 
@@ -23,4 +25,5 @@ public:
 
 private:
 	sprite_a();
+	tempresources* tr = tempresources::get_res();
 };

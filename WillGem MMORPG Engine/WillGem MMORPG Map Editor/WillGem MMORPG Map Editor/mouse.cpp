@@ -3,6 +3,7 @@
 mouse::mouse()
 {
 	spr_mouse->set_sprite("Resources/Gui/cursor_1.png");
+	tile_mouse = new tile(Vector2i(0, 0), Vector2i(0, 0), 1);
 }
 
 void mouse::renderizar(RenderWindow &ventana)

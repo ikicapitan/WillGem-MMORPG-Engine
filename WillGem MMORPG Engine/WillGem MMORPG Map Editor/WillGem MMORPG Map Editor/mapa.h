@@ -2,8 +2,8 @@
 #include "SFML\Graphics.hpp"
 #include "tile.h"
 #include "sprite_a.h"
-#include <list>
 #include <fstream>
+
 
 using namespace sf;
 
@@ -20,7 +20,8 @@ public:
 	void reset_map();
 	void remove_data(Vector2i num_grilla);
 	void set_data(Vector2i num_grilla, Vector2i num_tile, unsigned short num_tileset);
-	std::list <tile> * tilemap; //Lista Grillas o Tiles en un Array de Capas
+	tile get_data(Vector2i num_grilla);
+	std::map <std::pair<int, int>,tile>  tilemap; //Lista Grillas o Tiles en un Array de Capas
 	Vector2u get_gdim() { return dim_grillas; }
 	
 

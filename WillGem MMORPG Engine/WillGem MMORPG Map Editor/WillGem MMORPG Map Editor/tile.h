@@ -9,5 +9,6 @@ public:
 	Vector2i num_grilla; //En que numero de grilla se dibujara
 	Vector2i num_tile; //Numero de tile XY en la plantilla seleccionada
 	unsigned short num_tileset; //Numero de plantilla o archivo seleccionado
+	bool operator == (tile t);
 private:
 };

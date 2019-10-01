@@ -14,7 +14,7 @@ void mapa::iniciar()
 {
 	n_grillas = Vector2u(25, 19); 
 	dim_grillas = Vector2u(32, 32);
-	tilemap = new list<tile>[capas]; //Creo el array de listas segun numero de capas
+	//tilemap = new vector<tile>[capas]; //Creo el array de listas segun numero de capas
 }
 
 void mapa::renderizar()
@@ -55,22 +55,22 @@ void mapa::llenar_mapa(Vector2i n_tile, unsigned short n_tileset, unsigned short
 		for (int j = 0; j < n_grillas.y; j++)
 		{
 			tile newTile(Vector2i(i, j), n_tile, n_tileset); //Creo un nuevo tile
-			tilemap[n_capa].push_back(newTile); //Lo agrego a la lista
+			tilemap.insert(std::make_pair(std::make_pair(i,j), newTile)); //Lo agrego a la lista
 		}
 	}
 }
 
 void mapa::dibujar_tiles()
 {
-	for (int i = 0; i < capas; i++)
-	{
-		for each(tile t in tilemap[i]) //Recorro elementos de la lista uno por uno
+	//for (int i = 0; i < capas; i++)
+	//{
+	for (std::map <std::pair<int,int>, tile>::iterator t = tilemap.begin(); t != tilemap.end(); t++) //Recorro elementos de la lista uno por uno
 		{
-			spr_tile->set_sprite(t.num_tileset, 16, 16, t.num_tile); //Cargo cada elemento leyendo la lista y asignando el valor al Sprite creado
-			spr_tile->spr_player->setPosition(t.num_grilla.x * dim_grillas.x, t.num_grilla.y * dim_grillas.y); //Posiciono en la grilla correspondiente para dibujar
+			spr_tile->set_sprite(t->second.num_tileset, 16, 16, t->second.num_tile); //Cargo cada elemento leyendo la lista y asignando el valor al Sprite creado
+			spr_tile->spr_player->setPosition(t->second.num_grilla.x * dim_grillas.x, t->second.num_grilla.y * dim_grillas.y); //Posiciono en la grilla correspondiente para dibujar
 			ventana->draw(*spr_tile->spr_player);
 		}
-	}
+	//}
 }
 
 
@@ -85,25 +85,26 @@ void mapa::load_mapa()
 		reset_map();
 	else
 	{
-		for (int i = 0; i < capas; i++)
-		{
-			for each(tile t in tilemap[i]) //Recorro elementos de la lista uno por uno
+		//for (int i = 0; i < capas; i++)
+		//{
+		
+			for (std::map <std::pair<int, int>, tile>::iterator t = tilemap.begin(); t != tilemap.end(); t++) //Recorro elementos de la lista uno por uno
 			{
-				map.read(reinterpret_cast<char*>(&t.num_grilla), sizeof(unsigned short)); //Escribimos datos en orden
-				map.read(reinterpret_cast<char*>(&t.num_tile), sizeof(unsigned short));
-				map.read(reinterpret_cast<char*>(&t.num_tileset), sizeof(unsigned short));
+				map.read(reinterpret_cast<char*>(&t->second.num_grilla), sizeof(unsigned short)); //Escribimos datos en orden
+				map.read(reinterpret_cast<char*>(&t->second.num_tile), sizeof(unsigned short));
+				map.read(reinterpret_cast<char*>(&t->second.num_tileset), sizeof(unsigned short));
 			}
-		}
+		//}
 	}
 }
 
 
 void mapa::reset_map()
 {
-	for (int i = 0; i < capas; i++)
-	{
-		tilemap[i].clear(); //Vaciamos elementos de la lista de tiles en cada capa
-	}
+	//for (int i = 0; i < capas; i++)
+	//{
+		tilemap.clear(); //Vaciamos elementos de la lista de tiles en cada capa
+	//}
 }
 
 void mapa::save_mapa()
@@ -113,15 +114,17 @@ void mapa::save_mapa()
 
 	ofstream map(nombre_archivo.c_str(), ios::binary); //Abrimos archivo para escritura en cifrado binario
 
-	for (int i = 0; i < capas; i++) //Recorremos las capas
-	{
-		for each(tile t in tilemap[i]) //Recorremos la lista de tiles en esas capas
+	//for (int i = 0; i < capas; i++) //Recorremos las capas
+	//{
+	
+		for (std::map <std::pair<int, int>, tile>::iterator t = tilemap.begin(); t != tilemap.end(); t++) //Recorro elementos de la lista uno por uno
 		{
-			map.write(reinterpret_cast<const char*>(&t.num_grilla), sizeof(unsigned short)); //Escribimos datos en orden
-			map.write(reinterpret_cast<const char*>(&t.num_tile), sizeof(unsigned short));
-			map.write(reinterpret_cast<const char*>(&t.num_tileset), sizeof(unsigned short));
+			map.write(reinterpret_cast<const char*>(&t->second.num_grilla), sizeof(unsigned short)); //Escribimos datos en orden
+			map.write(reinterpret_cast<const char*>(&t->second.num_tile), sizeof(unsigned short));
+			map.write(reinterpret_cast<const char*>(&t->second.num_tileset), sizeof(unsigned short));
 		}
-	}
+		
+	//}
 
 	map.close();
 }
@@ -129,16 +132,22 @@ void mapa::save_mapa()
 void mapa::set_data(Vector2i num_grilla, Vector2i num_tile, unsigned short num_tileset)
 {
 	tile t = tile(num_grilla, num_tile, num_tileset);
-	tilemap->push_back(t);
+	tilemap.insert(std::make_pair(std::make_pair(num_grilla.x, num_grilla.y), t));
 }
 
 void mapa::remove_data(Vector2i num_grilla)
 {
-	for each (tile t in *tilemap)
-	{
-		if (t.num_grilla == num_grilla)
-		{
-			tilemap->remove(t); //Esta linea parece ser el error ¿?
-		}
-	}
+	tilemap.erase(std::make_pair(num_grilla.x,num_grilla.y)); //Esta linea parece ser el error ¿?
+}
+
+tile mapa::get_data(Vector2i num_grilla)
+{
+	//for (int i = 0; i < tilemap->size(); i++)
+	//{
+		//if (tilemap->at(i).num_grilla == num_grilla)
+		//{
+		
+			return tilemap.at(std::make_pair(num_grilla.x,num_grilla.y));
+		//}
+	//}
 }

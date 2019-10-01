@@ -14,7 +14,7 @@ eventos* eventos::get_event()
 void eventos::procesar_eventos(RenderWindow& ventana, View& cam, mapa &map, mouse &m)
 {
 
-
+	
 	switch (evento->type)
 	{
 	case Event::KeyPressed:
@@ -34,7 +34,23 @@ void eventos::procesar_eventos(RenderWindow& ventana, View& cam, mapa &map, mous
 	case Event::MouseButtonReleased:
 		if (evento->mouseButton.button == Mouse::Left) //Boton izquierdo del mouse
 		{
-			map.set_data(Vector2i(m.get_spr().spr_player->getPosition().x / map.get_gdim().x, m.get_spr().spr_player->getPosition().y / map.get_gdim().y), Vector2i(0, 0), 1);
+			switch (est_pan)
+			{
+			case 0:
+				map.set_data(Vector2i(m.get_spr().spr_player->getPosition().x / map.get_gdim().x, m.get_spr().spr_player->getPosition().y / map.get_gdim().y), m.get_tmouse().num_tile, m.get_tmouse().num_tileset);
+				break;
+
+			case 1:
+				m.set_tmouse(map.get_data(Vector2i(m.get_spr().spr_player->getPosition().x / map.get_gdim().x, m.get_spr().spr_player->getPosition().y / map.get_gdim().y)));
+				break;
+
+			case 2:
+				map.reset_map();
+				map.llenar_mapa(Vector2i(0, 0), 1, 0);
+				break;
+
+			}
+			
 		}
 		else if(evento->mouseButton.button == Mouse::Right)
 		{
@@ -76,5 +92,82 @@ void eventos::check_camera(RenderWindow & ventana, View & cam)
 			cam.move(0, -vel_desp_cam);
 		}
 			
+	}
+}
+
+void eventos::procesar_editor(RenderWindow& ventana, mouse& m, std::vector <boton> r, mapa &map)
+{
+
+	
+	if (ventana.hasFocus())
+	{
+		
+		switch (evento->type)
+		{
+			
+		case Event::KeyPressed:
+			
+			if (Keyboard::isKeyPressed(Keyboard::Add)) //+
+			{
+				
+			}
+			else if (Keyboard::isKeyPressed(Keyboard::Subtract)) //
+			{
+
+			}
+
+			//Zoom Out
+			break;
+
+		case Event::MouseButtonReleased:
+			
+			if (evento->mouseButton.button == Mouse::Left) //Boton izquierdo del mouse
+			{
+				Vector2i posicion_mouse;
+				posicion_mouse = Mouse::getPosition(ventana);
+				
+				for each(boton button in r)
+				{
+					
+					if (button.get_rect().getGlobalBounds().contains(posicion_mouse.x, posicion_mouse.y))
+					{
+						if (button.get_id() == "insertar")
+						{
+							est_pan = estados_panel::insertar;
+						}
+						else if (button.get_id() == "copiar")
+						{
+							est_pan = estados_panel::copiar;
+						}
+						else if (button.get_id() == "llenar")
+						{
+							est_pan = estados_panel::llenar;
+						}
+						else if (button.get_id() == "flip")
+						{
+							est_pan = estados_panel::flip;
+						}
+						else if (button.get_id() == "vaciar")
+						{
+							map.reset_map();
+						}
+						else if (button.get_id() == "guardar")
+						{
+							est_pan = estados_panel::guardar;
+						}
+					}
+				}
+			}
+			else if (evento->mouseButton.button == Mouse::Right)
+			{
+				
+			}
+			break;
+
+
+		case Event::Closed:
+			exit(1);
+			break;
+		}
 	}
 }
